@@ -1,0 +1,13 @@
+<FilesMatch ".(flv|gif|jpg|jpeg|png|ico|swf|js|css)$">
+  Header set Cache-Control "max-age=2592000"
+</FilesMatch>
+<FilesMatch ".(css)$">
+  Header set Cache-Control "max-age=600"
+</FilesMatch>
+<FilesMatch ".(php)$">
+  Header set Cache-Control "private, max-age=0, must-revalidate"
+</FilesMatch>
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php?route=$1 [L,QSA]
